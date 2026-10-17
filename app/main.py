@@ -68,8 +68,8 @@ class Question(BaseModel):
 def ask_ai(body: Question, db: Session = Depends(get_db)):
     try:
         return {"question": body.question, "answer": ai.ask(db, body.question)}
-    except httpx.HTTPError:
-        raise HTTPException(
+    except httpx.HTTPError as e:
+         raise HTTPException(
             status_code=503,
-            detail="Ollama is not reachable. Run `ollama serve` and `ollama pull llama3.2:1b`.",
+            detail=f"Ollama request failed ({type(e).__name__}): {e}. Check OLLAMA_MODEL and that Ollama is running.",
         )
