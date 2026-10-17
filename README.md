@@ -122,4 +122,4 @@ tests/
 
 ## Notes
 
-Only dummy data is used. No secrets or real student information are committed (`*.db` and `.env` are git-ignored).
+Only dummy data is used. No secrets or real student information are committed 
